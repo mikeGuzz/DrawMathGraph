@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace DrawMathGraph
 {
-    public enum ToolType { Selection, Move, Zoom };
+    public enum ToolType { Move, Zoom };
 
     public partial class Form1 : Form
     {
@@ -65,12 +65,11 @@ namespace DrawMathGraph
 
             DrawableFunction.DrawGraphBackground(g, sclaedTileSize, pictureBox1.ClientSize, offset);
 
-            if (!resize && checkedListBox1.CheckedItems.Count != 0)
+            if (resize || checkedListBox1.CheckedItems.Count == 0)
+                return;
+            foreach (DrawableFunction ob in checkedListBox1.CheckedItems)
             {
-                foreach (DrawableFunction ob in checkedListBox1.CheckedItems)
-                {
-                    ob.Draw(g, stepX, sclaedTileSize, pictureBox1.ClientSize, offset);
-                }
+                ob.Draw(g, stepX, sclaedTileSize, pictureBox1.ClientSize, offset);
             }
             //sqrt(cos(x))*cos(200x)+sqrt(abs(x))-(3.14/4)*pow((2-pow(x, 2)), 0.01)
         }
@@ -202,6 +201,7 @@ namespace DrawMathGraph
             {
                 checkedListBox1.Items.Add(dialog.Function, true);
                 pictureBox1.Invalidate();
+                remove_button.Enabled = true;
             }
         }
 
@@ -219,17 +219,19 @@ namespace DrawMathGraph
         
         private void remove_button_Click(object sender, EventArgs e)
         {
-            if (checkedListBox1.Items.Count > 0 && ModifierKeys.HasFlag(Keys.Control)
+            if (checkedListBox1.Items.Count > 0 && (ModifierKeys.HasFlag(Keys.Control) || checkedListBox1.SelectedIndex == ListBox.NoMatches)
                 && MessageBox.Show($"{checkedListBox1.Items.Count} list items will be permanently deleted.", ProductName, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 checkedListBox1.Items.Clear();
                 pictureBox1.Invalidate();
+                remove_button.Enabled = false;
                 return;
             }
             if (checkedListBox1.SelectedIndex == ListBox.NoMatches)
                 return;
             checkedListBox1.Items.RemoveAt(checkedListBox1.SelectedIndex);
             pictureBox1.Invalidate();
+            remove_button.Enabled = checkedListBox1.Items.Count != 0;
         }
 
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)

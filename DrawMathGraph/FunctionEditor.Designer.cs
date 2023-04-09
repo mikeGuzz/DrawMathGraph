@@ -73,7 +73,6 @@
             this.pickColor_button = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.bodyColor_pictureBox = new System.Windows.Forms.PictureBox();
-            this.templates_button = new System.Windows.Forms.Button();
             this.cancel_button = new System.Windows.Forms.Button();
             this.ok_button = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -571,15 +570,6 @@
             this.bodyColor_pictureBox.TabStop = false;
             this.bodyColor_pictureBox.Click += new System.EventHandler(this.pickColor_button_Click);
             // 
-            // templates_button
-            // 
-            this.templates_button.Location = new System.Drawing.Point(12, 288);
-            this.templates_button.Name = "templates_button";
-            this.templates_button.Size = new System.Drawing.Size(75, 23);
-            this.templates_button.TabIndex = 2;
-            this.templates_button.Text = "Templates";
-            this.templates_button.UseVisualStyleBackColor = true;
-            // 
             // cancel_button
             // 
             this.cancel_button.Location = new System.Drawing.Point(343, 288);
@@ -608,7 +598,6 @@
             this.ClientSize = new System.Drawing.Size(427, 319);
             this.Controls.Add(this.ok_button);
             this.Controls.Add(this.cancel_button);
-            this.Controls.Add(this.templates_button);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -674,7 +663,6 @@
         private Button ceil_button;
         private ComboBox dash_comboBox;
         private Label label3;
-        private Button templates_button;
         private Button cancel_button;
         private Button ok_button;
     }

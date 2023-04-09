@@ -492,12 +492,20 @@ namespace DrawMathGraph
 
         private void pi_button_Click(object sender, EventArgs e)
         {
-
+            var start = f_textBox.SelectionStart;
+            var value = Math.Round(Math.PI, 2).ToString();
+            f_textBox.Text = f_textBox.Text.Insert(f_textBox.SelectionStart, value);
+            f_textBox.Select(start + value.Length, 0);
+            f_textBox.Focus();
         }
 
         private void e_button_Click(object sender, EventArgs e)
         {
-
+            var start = f_textBox.SelectionStart;
+            var value = Math.Round(Math.E, 2).ToString();
+            f_textBox.Text = f_textBox.Text.Insert(f_textBox.SelectionStart, value);
+            f_textBox.Select(start + value.Length, 0);
+            f_textBox.Focus();
         }
 
         private void f_textBox_TextChanged(object sender, EventArgs e)
